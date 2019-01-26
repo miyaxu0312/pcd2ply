@@ -18,7 +18,7 @@ using namespace std;
 //VTK_MODULE_INIT(vtkInteractionStyle);
 using namespace std;
 int user_data;
-//µÚÒ»²¿·Öº¯Êı£º
+//ç¬¬ä¸€éƒ¨åˆ†å‡½æ•°ï¼š
 /*
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr depth2cloud(cv::Mat rgb_image, cv::Mat depth_image)
 {
@@ -60,7 +60,7 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr depth2cloud(cv::Mat rgb_image, cv::Mat de
 	return cloud_ptr;
 }
 */
-//µÚ¶ş²¿·Öº¯Êı£º
+//ç¬¬äºŒéƒ¨åˆ†å‡½æ•°ï¼š
 void viewerOneOff(pcl::visualization::PCLVisualizer& viewer)
 {
 	viewer.setBackgroundColor(1.0, 0.5, 1.0);
@@ -84,7 +84,7 @@ void viewerPsycho(pcl::visualization::PCLVisualizer& viewer)
 	//FIXME: possible race condition here:
 	user_data++;
 }
-//µÚÈı²¿·Öº¯Êı£º
+//ç¬¬ä¸‰éƒ¨åˆ†å‡½æ•°ï¼š
 int PCDtoPLYconvertor(string & input_filename, string& output_filename)
 {
 	pcl::PCLPointCloud2 cloud;
@@ -102,16 +102,16 @@ int PCDtoPLYconvertor(string & input_filename, string& output_filename)
 int main(int argc, char* argv[])
 {
 
-	string str = "F:\\c++project\\DENSE";
+	string str = "mainpath";
 	string className = "";
-	string imgPath = str + className + "_img2.png";
-	string depthPath = str + className + "_prediction.png";
-	string pcdName2 = "F:\\c++project\\DENSE\\result.pcd";
+	//string imgPath = str + className + "_img2.png";
+	//string depthPath = str + className + "_prediction.png";
+	string pcdName2 = "result.pcd";
 
 	cv::Mat depth;
 	cv::Mat image;
 
-	//µÚÒ»²¿·Ö£ºÉú³ÉµãÔÆpcdÎÄ¼ş
+	//ç¬¬ä¸€éƒ¨åˆ†ï¼šç”Ÿæˆç‚¹äº‘pcdæ–‡ä»¶
 	/*
 	image = cv::imread(imgPath);
 	//cv::Size t_s;
@@ -121,8 +121,8 @@ int main(int argc, char* argv[])
 	depth = cv::imread(depthPath, IMREAD_ANYDEPTH);
 	//cv::resize(depth, depth, t_s);
 	string pcdName(pcdName2);
-	if (!image.data || !depth.data)        // ÅĞ¶ÏÍ¼Æ¬µ÷ÈëÊÇ·ñ³É¹¦
-	return -1;        // µ÷ÈëÍ¼Æ¬Ê§°ÜÔòÍË³ö
+	if (!image.data || !depth.data)        // åˆ¤æ–­å›¾ç‰‡è°ƒå…¥æ˜¯å¦æˆåŠŸ
+	return -1;        // è°ƒå…¥å›¾ç‰‡å¤±è´¥åˆ™é€€å‡º
 
 	pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
 
@@ -131,12 +131,12 @@ int main(int argc, char* argv[])
 	pcl::io::savePCDFileASCII(pcdName, *cloud);
 	*/
 
-	//µÚ¶ş²¿·Ö£ºÏÔÊ¾pcdÎÄ¼ş
+	//ç¬¬äºŒéƒ¨åˆ†ï¼šæ˜¾ç¤ºpcdæ–‡ä»¶
 	//*
 	cout << "line 136" << endl;
 	pcl::PointCloud<pcl::PointXYZRGBA>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZRGBA>);
 	cout << "line 138" << endl;
-	pcl::io::loadPCDFile("/home/yixuan/DENSE/build/result.pcd", *cloud);
+	pcl::io::loadPCDFile("result.pcd", *cloud);
 	cout << "line 140" << endl;
 	/*
 	pcl::visualization::CloudViewer viewer("Cloud Viewer");
@@ -158,10 +158,10 @@ int main(int argc, char* argv[])
 	}
 	*/
 
-	//µÚÈı²¿·Ö£º½«pcd×ª»¯Îªply
+	//ç¬¬ä¸‰éƒ¨åˆ†ï¼šå°†pcdè½¬åŒ–ä¸ºply
 	
-	string input_filename = "/home/yixuan/DENSE/build/result.pcd";
-	string output_filename = "/home/yixuan/pcd2ply/result.ply";
+	string input_filename = "result.pcd";
+	string output_filename = "result.ply";
 	PCDtoPLYconvertor(input_filename, output_filename);
 	
 
